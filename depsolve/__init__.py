@@ -1,1 +1,2 @@
-from .depsolve import Dependency, walk
+from .depsolve import walk
+from .models import Dependency
