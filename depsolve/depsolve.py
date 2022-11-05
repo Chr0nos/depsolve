@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Iterator
 from .models import Dependency
 from .exceptions import UnknowDependencyException, CirclularDependencyException
 
@@ -46,7 +46,10 @@ def remove_from_mapping(mapping: Mapping, dependency: Dependency) -> Mapping:
     return mapping
 
 
-async def walk(dependencies: list[Dependency], max_iterations=100):
+def walk(
+    dependencies: list[Dependency],
+    max_iterations=100
+) -> Iterator[list[Dependency]]:
     mapping = to_flat_mapping(dependencies)
     iteration = 0
     while mapping:

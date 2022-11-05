@@ -31,7 +31,7 @@ async def main():
         Dependency(name='cake', depends_on=['genoise', 'strawberry', 'sirop']),
         Dependency(name='cooking', depends_on=['cake'])
     ]
-    async for items in walk(dependencies):
+    for items in walk(dependencies):
         deps_names = [dep.name for dep in items]
         print(f'dependencies to install: {len(items)} : {", ".join(deps_names)}')
         tasks = asyncio.gather(*[perform_importation(dep) for dep in items])
