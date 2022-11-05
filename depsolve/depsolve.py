@@ -52,6 +52,9 @@ def walk(
 ) -> Iterator[list[Dependency]]:
     mapping = to_flat_mapping(dependencies)
     iteration = 0
+    """Yields the list of dependencies that are ready to be took care of
+    (with their parents dependencies already being satified)
+    """
     while mapping:
         iteration += 1
         leafs = list([
